@@ -1,15 +1,101 @@
-<html>
+<!DOCTYPE html>
+<html lang="th">
 <head>
- <title>
-นางสาว พิชชากร สัตยางพงษ์
- </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ถึงพีช 💖</title>
+
 <style>
-.bigfont{
- font-size : 200px;
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff7eb3,#ff758c,#ffb199);
+    font-family:system-ui,sans-serif;
+    overflow:hidden;
+}
+
+.card{
+    background:rgba(255,255,255,0.95);
+    padding:35px;
+    border-radius:25px;
+    max-width:600px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+h1{
+    color:#ff3f6c;
+    font-size:2.5rem;
+}
+
+p{
+    font-size:1.2rem;
+    line-height:1.8;
+    color:#333;
+}
+
+button{
+    background:#ff3f6c;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:50px;
+    font-size:1rem;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+#secret{
+    display:none;
+    margin-top:20px;
+    font-size:1.3rem;
+    color:#ff3f6c;
+    font-weight:bold;
 }
 </style>
 </head>
-  <body>
-   <div class="bigfont">พีช อ้วน</div> 
-  </body>
+<body>
+
+<div class="card">
+    <h1>ถึงพีช 💖</h1>
+
+    <p>
+        เอาจริงนะ...<br>
+        ตอนแรกก็คิดว่าพีชเอ๋อ <br>
+        สรุปตอนนี้ก็เอ๋อจิงๆ
+        <br><br>
+
+        ขอบคุณที่อยู่ด้วยกัน<br>
+        ขอบคุณที่เป็นเซฟโซนของเค้า 🌷
+        <br><br>
+
+        ถ้าถามว่ารักแค่ไหน...
+        <br>
+        มากกว่าพีชล้านๆนๆรไรไาห
+    </p>
+
+    <button onclick="showLove()">
+        กดตรงนี้
+    </button>
+
+    <div id="secret">
+        พีช เค้ารักพีชมากๆกๆกๆกๆกๆก<br>
+        รักวันนี้ พรุ่งนี้ และทุก ๆ วันเลย 
+    </div>
+</div>
+
+<script>
+function showLove(){
+    document.getElementById("secret").style.display="block";
+}
+</script>
+
+</body>
 </html>
