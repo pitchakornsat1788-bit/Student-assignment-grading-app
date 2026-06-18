@@ -3,181 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ถึงพีช 💖</title>
-
+<title>เว็บจดการบ้าน</title>
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    height:100vh;
-    overflow:hidden;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family:sans-serif;
-    background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ffb199,#ffd6e0);
-    background-size:400% 400%;
-    animation:bg 10s ease infinite;
-}
-
-@keyframes bg{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-}
-
-.card{
-    background:rgba(255,255,255,.95);
-    padding:35px;
-    border-radius:25px;
-    text-align:center;
-    width:90%;
-    max-width:650px;
-    box-shadow:0 10px 40px rgba(0,0,0,.2);
-    z-index:10;
-}
-
-h1{
-    color:#ff4f7a;
-    font-size:3rem;
-}
-
-.message{
-    margin-top:15px;
-    font-size:1.2rem;
-    line-height:1.8;
-}
-
-#randomText{
-    margin-top:15px;
-    color:#ff4f7a;
-    font-weight:bold;
-}
-
-button{
-    margin:10px;
-    padding:12px 25px;
-    border:none;
-    border-radius:50px;
-    cursor:pointer;
-    font-size:1rem;
-}
-
-.yes{
-    background:#ff4f7a;
-    color:white;
-}
-
-.no{
-    background:#ddd;
-}
-
-.heart{
-    position:absolute;
-    color:white;
-    animation:float 5s linear forwards;
-}
-
-@keyframes float{
-    from{
-        transform:translateY(100vh);
-        opacity:1;
+    body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 20px;
+        background: #f4f4f4;
     }
-    to{
-        transform:translateY(-100px);
-        opacity:0;
-    }
-}
 
-#loveMsg{
-    display:none;
-    font-size:1.5rem;
-    color:#ff4f7a;
-    margin-top:20px;
-}
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    .input-group {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    input {
+        flex: 1;
+        padding: 10px;
+    }
+
+    button {
+        padding: 10px 15px;
+        cursor: pointer;
+        background: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        background: white;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .done {
+        text-decoration: line-through;
+        color: gray;
+    }
+
+    .delete {
+        background: red;
+    }
 </style>
 </head>
 <body>
 
-<div class="card">
-    <h1>ถึงพีช 💖</h1>
+<h1>📚 เว็บจดการบ้าน</h1>
 
-    <div class="message">
-        เธออาจเป็นคนธรรมดาสำหรับคนอื่น<br>
-        แต่สำหรับเค้า...<br>
-        พีชคือคนที่ทำให้ทุกวันน่าอยู่ขึ้นเยอะเลย 
-    </div>
-
-    <div id="randomText"></div>
-
-    <br>
-
-    <button class="yes" onclick="love()">
-        รักเค้า 💕
-    </button>
-
-    <button class="no" id="noBtn">
-        ไม่รัก 😏
-    </button>
-
-    <div id="loveMsg">
-        เย้! เค้าก็รักพีชที่สุดเลย 💖✨
-    </div>
+<div class="input-group">
+    <input type="text" id="homeworkInput" placeholder="พิมพ์การบ้าน...">
+    <button onclick="addHomework()">เพิ่ม</button>
 </div>
 
+<ul id="homeworkList"></ul>
+
 <script>
+function addHomework() {
+    const input = document.getElementById("homeworkInput");
+    const text = input.value.trim();
 
-const texts = [
-"คิดถึงพีชอีกแล้ว ",
-"พีชเอ๋อเกินไปปะ ",
-"ตกหลุมรักคนเดิมทุกวันเลย ",
-"อยากอยู่กับพีชนาน ๆ ",
-"พีชคือเรื่องดี ๆ ของเค้า ✨",
-"แฟนใครน่ารักจัง อ้อ แฟนเค้าเอง 😚"
-];
+    if (text === "") return;
 
-setInterval(()=>{
-document.getElementById("randomText").innerText =
-texts[Math.floor(Math.random()*texts.length)];
-},3000);
+    const li = document.createElement("li");
 
-function createHeart(){
-    const heart=document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML="💖";
+    const span = document.createElement("span");
+    span.textContent = text;
 
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(20+Math.random()*40)+"px";
+    span.onclick = () => {
+        span.classList.toggle("done");
+    };
 
-    document.body.appendChild(heart);
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "ลบ";
+    deleteBtn.className = "delete";
+    deleteBtn.onclick = () => li.remove();
 
-    setTimeout(()=>{
-        heart.remove();
-    },5000);
+    li.appendChild(span);
+    li.appendChild(deleteBtn);
+
+    document.getElementById("homeworkList").appendChild(li);
+
+    input.value = "";
 }
-
-setInterval(createHeart,250);
-
-function love(){
-    document.getElementById("loveMsg").style.display="block";
-
-    for(let i=0;i<30;i++){
-        setTimeout(createHeart,i*100);
-    }
-}
-
-const noBtn=document.getElementById("noBtn");
-
-noBtn.addEventListener("mouseover",()=>{
-    noBtn.style.position="absolute";
-    noBtn.style.left=Math.random()*80+"vw";
-    noBtn.style.top=Math.random()*80+"vh";
-});
-
 </script>
 
 </body>
